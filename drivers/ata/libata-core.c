@@ -3952,7 +3952,17 @@ static const struct ata_blacklist_entry ata_device_blacklist [] = {
 						ATA_HORKAGE_ZERO_AFTER_TRIM, },
 	{ "FCCT*M500*",			NULL,	ATA_HORKAGE_NO_NCQ_TRIM |
 						ATA_HORKAGE_ZERO_AFTER_TRIM, },
-
+        /*
+        * fix problems with Samsung T5 and T3
+        * -> does not properly handle queued TRIM commands
+        * the T5 and T3 are a renamed 850 evo with a usb-c adapter
+        */
+        { "Samsung Portable SSD T5",    NULL,   ATA_HORKAGE_NO_NCQ_TRIM |
+                                                ATA_HORKAGE_ZERO_AFTER_TRIM, },
+        { "Samsung Portable SSD T3",    NULL,   ATA_HORKAGE_NO_NCQ_TRIM |
+                                                ATA_HORKAGE_ZERO_AFTER_TRIM, },
+	
+	
 	/* devices that don't properly handle TRIM commands */
 	{ "SuperSSpeed S238*",		NULL,	ATA_HORKAGE_NOTRIM, },
 
